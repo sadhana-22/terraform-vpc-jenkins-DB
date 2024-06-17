@@ -93,10 +93,12 @@ mkdir -p ~/.local/bin
 mv ./kubectl ~/.local/bin/kubectl
 # and then append (or prepend) ~/.local/bin to $PATH
 
+###########################################################################################
+# To install maven
+###########################################################################################
 apt update -y
 apt install maven -y
 
-usermod -aG docker jenkins
 sudo chmod 666 /var/run/docker.sock
 
 
