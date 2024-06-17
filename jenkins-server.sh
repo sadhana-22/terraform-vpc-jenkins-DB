@@ -97,3 +97,5 @@ apt update -y
 apt install maven -y
 
 usermod -aG docker jenkins
+
+sudo systemctl restart jenkins

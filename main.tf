@@ -184,3 +184,72 @@ resource "aws_security_group" "our-security-group" { # This will create security
   }
 }
 
+resource "aws_security_group" "our-security-group-for-nexus" { # This will create security group in vpc
+  name = "Our-Security-Group-for-nexus" # name for security group
+  description = "Our Security Group" # description for SG
+  vpc_id = aws_vpc.our-vpc.id # Vpc in which this SG will be created
+  tags = {
+    Name : "Our-Security-Group-for-nexus" # Tags for security group
+    Environment : var.environment # Environment for the security group
+  }
+  ingress {  # This is for inbound rules in SG
+    from_port   = 22 # This is syntax to open port 22
+    to_port     = 22
+    protocol    = "tcp" # its using SSH but we specify TCP here 
+    cidr_blocks = ["0.0.0.0/0"] # To allow traffic from anywhere IPV4
+  }
+  ingress { 
+    from_port   = 80  # This is syntax to open port 80
+    to_port     = 80
+    protocol    = "tcp" # its using HTTP but we specify TCP here
+    cidr_blocks = ["0.0.0.0/0"] 
+  }
+  ingress {
+    from_port   = 8081 # This is syntax to open port 8080
+    to_port     = 8081
+    protocol    = "tcp" 
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {  # This is syntax to open ports for outbound traffic
+    from_port   = 0 # we are allowing all traffic for outbound
+    to_port     = 0 # we are allowing all traffic for outbound
+    protocol    = "-1" # all Protocols
+    cidr_blocks = ["0.0.0.0/0"] # anywhere ipv4
+    ipv6_cidr_blocks = ["::/0"] # anywhere ipv6
+  }
+}
+
+resource "aws_security_group" "our-Security-Group-for-sonar" { # This will create security group in vpc
+  name = "OOur-Security-Group-for-sonar" # name for security group
+  description = "Our Security Group" # description for SG
+  vpc_id = aws_vpc.our-vpc.id # Vpc in which this SG will be created
+  tags = {
+    Name : "Our-Security-Group-for-sonar" # Tags for security group
+    Environment : var.environment # Environment for the security group
+  }
+  ingress {  # This is for inbound rules in SG
+    from_port   = 22 # This is syntax to open port 22
+    to_port     = 22
+    protocol    = "tcp" # its using SSH but we specify TCP here 
+    cidr_blocks = ["0.0.0.0/0"] # To allow traffic from anywhere IPV4
+  }
+  ingress { 
+    from_port   = 80  # This is syntax to open port 80
+    to_port     = 80
+    protocol    = "tcp" # its using HTTP but we specify TCP here
+    cidr_blocks = ["0.0.0.0/0"] 
+  }
+  ingress {
+    from_port   = 9000 # This is syntax to open port 8080
+    to_port     = 9000
+    protocol    = "tcp" 
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {  # This is syntax to open ports for outbound traffic
+    from_port   = 0 # we are allowing all traffic for outbound
+    to_port     = 0 # we are allowing all traffic for outbound
+    protocol    = "-1" # all Protocols
+    cidr_blocks = ["0.0.0.0/0"] # anywhere ipv4
+    ipv6_cidr_blocks = ["::/0"] # anywhere ipv6
+  }
+}
