@@ -1,3 +1,5 @@
+#while creating ec2, we attach the specific instance profile to it and thet profile is attached to the IAM role. 
+#Whenever we attach that profile to new ec2 while creating it, the IAM role gets automatically attached to it.
 
 resource "aws_iam_role" "our-iam-role" {
     name = "Terraform-Admin"
