@@ -65,7 +65,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 # Other installation
 ##########################################################################################
 
-usermod -aG docker jenkins
+usermod -aG docker jenkins   #allowing Jenkins to run Docker commands without requiring sudo.
 apt install unzip -y
 
 ###########################################################################################
