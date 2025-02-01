@@ -99,7 +99,7 @@ mv ./kubectl ~/.local/bin/kubectl
 apt update -y
 apt install maven -y
 
-sudo chmod 666 /var/run/docker.sock
+sudo chmod 666 /var/run/docker.sock   #Jenkins or other users need to manage Docker without requiring root privileges.
 
 
 sudo systemctl restart jenkins
